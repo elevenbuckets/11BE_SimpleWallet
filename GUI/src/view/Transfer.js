@@ -59,6 +59,7 @@ class Transfer extends Reflux.Component {
           <input size={62} type='text' style=
           {{
             marginLeft: "40px",
+            marginRight: "40px",
             backgroundColor: "rgba(255,255,255,0)",
             border: "1px solid white",
             color: "white",

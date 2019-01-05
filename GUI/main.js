@@ -29,7 +29,7 @@ const createWindow = () => {
 		return wallet.init(); 
 	  })
 	  .then(() => {
-	    win = new BrowserWindow({minWidth: 1280, minHeight: 960, resizable: true, icon: path.join(__dirname, 'public', 'assets', 'icon', '11be_logo.png')});
+	    win = new BrowserWindow({minWidth: 1183, minHeight: 480, resizable: true, icon: path.join(__dirname, 'public', 'assets', 'icon', '11be_logo.png')});
 	    win.setMenu(null);
 	
 	    // and load the index.html of the app.

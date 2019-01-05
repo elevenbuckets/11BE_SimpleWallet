@@ -14,6 +14,7 @@ class Wallet extends BladeIronClient {
 		this.TokenList = this.configs.tokens; // just a list;
 		this.TokenInfo = {};
 
+		this.toWei = (eth, decimals) => this.toBigNumber(String(eth)).times(this.toBigNumber(10 ** decimals)).floor(); 
 		this.toEth = (wei, decimals) => this.toBigNumber(String(wei)).div(this.toBigNumber(10 ** decimals));
 		this.hex2num = (hex) => this.toBigNumber(String(hex)).toString();		
 
@@ -49,7 +50,7 @@ class Wallet extends BladeIronClient {
 
 		this.setGWeiGasPrice = (priceInGWei) =>
 		{
-			let priceInWei = this.toWei(priceInGWei, 'gwei');
+			let priceInWei = this.toWei(priceInGWei, 9);
 
 			return this.setGasPrice(priceInWei);
 		}

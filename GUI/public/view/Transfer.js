@@ -76,6 +76,7 @@ class Transfer extends _reflux2.default.Component {
           'Recipient:',
           _react2.default.createElement('input', { size: 62, type: 'text', style: {
               marginLeft: "40px",
+              marginRight: "40px",
               backgroundColor: "rgba(255,255,255,0)",
               border: "1px solid white",
               color: "white",

@@ -105,7 +105,7 @@ class TxObjects extends _reflux2.default.Component {
               _react2.default.createElement(
                 'td',
                 null,
-                _react2.default.createElement('input', { type: 'button', className: 'button', value: this.props.send_button_value, onClick: this.handleSend })
+                _react2.default.createElement('input', { type: 'button', className: 'button', style: { margin: "10px 0 0 15px", fontSize: "24px" }, value: this.props.send_button_value, onClick: this.handleSend })
               )
             )
           )

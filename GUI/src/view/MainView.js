@@ -71,7 +71,7 @@ class MainView extends Reflux.Component {
         } else if ( this.state.syncInProgress === false ) {
             document.body.style.background = "rgb(11, 41, 57)";
             return (
-                <div className="container unlocked">
+                <div className="item container unlocked">
                     <Accounts ref="Accounts"/>
 		    <Transfer />
                 </div>

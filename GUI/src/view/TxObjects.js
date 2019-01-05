@@ -114,7 +114,7 @@ class TxObjects extends Reflux.Component {
                   paddingRight: "12px"
                 }} onChange={this.handleChangeGas} /></div>
               </td>
-              <td><input type="button" className="button" value={this.props.send_button_value} onClick={this.handleSend} /></td>
+              <td><input type="button" className="button" style={{margin: "10px 0 0 15px", fontSize: "24px"}} value={this.props.send_button_value} onClick={this.handleSend} /></td>
             </tr>
           </tbody>
         </table>

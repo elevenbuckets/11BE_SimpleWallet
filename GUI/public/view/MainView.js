@@ -118,7 +118,7 @@ class MainView extends _reflux2.default.Component {
 												document.body.style.background = "rgb(11, 41, 57)";
 												return _react2.default.createElement(
 																'div',
-																{ className: 'container unlocked' },
+																{ className: 'item container unlocked' },
 																_react2.default.createElement(_Accounts2.default, { ref: 'Accounts' }),
 																_react2.default.createElement(_Transfer2.default, null)
 												);
