@@ -187,9 +187,12 @@ class WalletStates extends _reflux2.default.Store {
 		if (fromAddr !== this.wallet.userWallet) {
 			console.log("no password");return;
 		}
-		let weiAmount = type === 'ETH' ? this.wallet.toWei(amount, 18).toString() : this.wallet.toWei(amount, this.wallet.TokenInfo[symbol].decimals).toString();
-		console.log(`DEBUG: amount in wei: ${weiAmount}`);
-		this.wallet.sendTx(type)(addr, weiAmount).catch(err => {
+		let weiAmount = type === 'ETH' ? this.wallet.toWei(amount, 18).toString() : this.wallet.toWei(amount, this.wallet.TokenInfo[type].decimals).toString();
+		this.wallet.sendTx(type)(addr, weiAmount).then(qid => {
+			return this.wallet.getReceipts(qid);
+		}).then(r => {
+			console.dir(r);
+		}).catch(err => {
 			console.trace(err);
 		});
 	}
