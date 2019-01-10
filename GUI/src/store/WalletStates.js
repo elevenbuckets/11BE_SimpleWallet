@@ -26,6 +26,8 @@ class WalletStates extends Reflux.Store {
             		gasPriceInfo: null,
 			tokenList: [],
 			showingBlock: 0,
+			connected: true,
+			wait4peers: true,
 			syncInProgress: false
 		}
 
@@ -49,21 +51,37 @@ class WalletStates extends Reflux.Store {
 	        	this._target = this.state.tokenList.length + 1;
 	        	this._balances = {'ETH': 0 };
 	        	this._tokenBalance = [];
-	
-			this.wallet.linkAccount(this.state.address) 
-			.then((r) => {
-				this.setState({passManaged: {[this.state.address]: r.result}});
-				loopasync(['ETH', ...this.state.tokenList], WalletActions.statusUpdate, 1);
-			})
-			.catch((err) => {
-				console.trace(err);
-					//this.setState({address: null});
-					//WalletActions.finishUpdate();
-			})
+
+			if (this.wallet.userWallet == this.state.address) {
+				//loopasync(['ETH', ...this.state.tokenList], WalletActions.statusUpdate, 1);
+				['ETH', ...this.state.tokenList].map((t) => { WalletActions.statusUpdate(t); })
+			} else if (typeof(this.state.passManaged[this.state.address]) === 'undefined') {
+				this.wallet.linkAccount(this.state.address) 
+				.then((r) => {
+					this.setState({passManaged: {[this.state.address]: r.result}});
+					//loopasync(['ETH', ...this.state.tokenList], WalletActions.statusUpdate, 1);
+					['ETH', ...this.state.tokenList].map((t) => { WalletActions.statusUpdate(t); })
+				})
+				.catch((err) => {
+					console.trace(err);
+						//this.setState({address: null});
+						//WalletActions.finishUpdate();
+				})
+			}
 		}
 
 		this.wallet.handleStats = (stats) => 
 		{
+			if (stats.connected === false) {
+				return this.setState({connected: false});
+			} else if (stats.blockHeight === 0) {
+				return this.setState({wait4peers: true, connected: true});
+			} else if (stats.blockHeight !== stats.highestBlock) {
+				return this.setState({syncInProgress: true, connected: true, wait4peers: false});
+			} else {
+				this.setState({...stats, wait4peers: false, syncInProgress: false});
+			}
+
 			this.wallet.allAccounts().then((addrs) => {
 				if (addrs.length !== this.state.accounts.length) this.setState({ accounts: addrs });
 
@@ -75,7 +93,7 @@ class WalletStates extends Reflux.Store {
 			});
 
 			this.wallet.gasPriceEst().then((est) => {
-				this.setState({...stats, gasPriceInfo: est, gasPrice: est[this.state.gasPriceOption]}); 
+				this.setState({gasPriceInfo: est, gasPrice: est[this.state.gasPriceOption]}); 
 			})
 		}
 

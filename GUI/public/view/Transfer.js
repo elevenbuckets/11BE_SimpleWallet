@@ -74,9 +74,7 @@ class Transfer extends _reflux2.default.Component {
           'label',
           { className: 'item TransferTo' },
           'Recipient:',
-          _react2.default.createElement('input', { size: 62, type: 'text', style: {
-              marginLeft: "40px",
-              marginRight: "40px",
+          _react2.default.createElement('input', { size: 52, type: 'text', style: {
               backgroundColor: "rgba(255,255,255,0)",
               border: "1px solid white",
               color: "white",

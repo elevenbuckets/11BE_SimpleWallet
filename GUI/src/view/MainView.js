@@ -34,12 +34,23 @@ class MainView extends Reflux.Component {
     render() {
         console.log("In MainView render(); syncInProgress = " + this.state.syncInProgress);
 
-	if ( this.state.syncInProgress === true ) 
+	if ( this.state.connected === false ) 
+	{
+	            document.body.style.background = "rgb(17, 31, 47)";
+		    return (
+	                <div className="container locked" style={{ background: "rgb(17, 31, 47)"}}>
+	                    <div className="item list" style={{ background: "none" }}>
+	                        <div style={{ border: "2px solid white", padding: "40px", textAlign: "center" }}>
+				    <div className="loader syncpage"></div><br/>
+	                            <p style={{ alignSelf: "flex-end", fontSize: "24px", marginTop: "10px" }}>
+	                                Lost local Ethereum node connection ...
+				    </p>
+	                        </div>
+	                    </div>
+	                </div>
+		    );
+	} else if ( this.state.wait4peers === true ) 
         {
-	    if (   
-                   this.state.highestBlock === 0 
-                || this.state.highestBlock === this.state.blockHeight ) 
-            {
 	            document.body.style.background = "rgb(17, 31, 47)";
 		    return (
 	                <div className="container locked" style={{ background: "rgb(17, 31, 47)"}}>
@@ -53,7 +64,8 @@ class MainView extends Reflux.Component {
 	                    </div>
 	                </div>
 		    );
-	    } else {
+	} else if ( this.state.syncInProgress === true ) 
+	{
 	            document.body.style.background = "linear-gradient(-180deg, rgb(17, 31, 47), rgb(24, 156, 195))";
 		    return (
 	                <div className="container locked" style={{ background: "none"}}>
@@ -67,8 +79,8 @@ class MainView extends Reflux.Component {
 	                    </div>
 	                </div>
 		    );
-	    }
-        } else if ( this.state.syncInProgress === false ) {
+        } else 
+	{
             document.body.style.background = "rgb(11, 41, 57)";
             return (
                 <div className="item container unlocked">

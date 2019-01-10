@@ -109,8 +109,8 @@ h6 {
 }
 
 .unlocked {
-  max-height: 345px;
-  margin: 15vh 15vw 15vh 15vw;
+  //max-height: 345px;
+  //margin: 15vh 15vw 15vh 15vw;
   grid-template-columns: 1fr;
   grid-template-rows: 100px 1fr;
   grid-template-areas: 
@@ -124,14 +124,11 @@ h6 {
   /*overflow-y: scroll; */
   width: 100%;
   height: 100%;
-  max-width: 860px;
-  max-height: 235px;
   grid-template-columns: 1fr 100px;
   grid-template-rows: 100px 1fr;
   grid-template-areas: 
     "TransferTo ToAvatar"
     "TxObj TxObj";
-  grid-gap: 4px;
 }
 
 .TransferTo {
@@ -164,7 +161,6 @@ h6 {
 }
 
 .address {
-  max-width: 860px;
   height: 100%;
   grid-area: address;
   display: grid;
@@ -228,6 +224,7 @@ h6 {
   border: 5px solid rgba(0,0,0,0.03);
   height: 100%;
   width: 100%;
+  margin: 0 40px 0 20px;
 }
 
 .berc20 {
@@ -435,8 +432,9 @@ h6 {
   position: relative;
   width: 100%;
   display: inline-block;
-  font-family: Arial;
-  font-size: 16px;
+  font-family: monospace;
+  font-size: 21px;
+  max-width: 700px;
 }
 
 .Dropdown-control {

@@ -77,44 +77,33 @@ class TxObjects extends Reflux.Component {
         <table>
           <tbody>
             <tr>
-              <td width='14%' style={{ whiteSpace: 'nowrap' }}>
+              <td width='10%' style={{ whiteSpace: 'nowrap' }}>
                 Types<br /><div style=
                 {{ 
                   textAlign: 'center', 
                   width: "3.5em", 
-                  margin: "10px 0 0 15px", 
+                  margin: "10px 40px 0 15px", 
                   padding: "0px", 
                   border: "1px solid white",
                   cursor: "pointer"
                 }} onClick={this.handleClick}>{sendkind}</div>
               </td>
-              <td width='43%'>
-                Amount<br /><div style={{ textAlign: 'center', marginTop: "10px" }}><input type='text' size='32' style=
+              <td width='75%'>
+                Amount<br /><div style={{ marginTop: "10px", marginLeft: "15px" }}><input type='text' size='32' style=
                 {{
                   backgroundColor: "rgba(255,255,255,0)",
                   border: "1px solid white",
                   color: "white",
                   fontWeight: "bold",
                   fontSize: "24px",
-                  width: "200px",
+                  width: "300px",
                   textAlign: "right",
                   paddingRight: "12px"
                 }} onChange={this.handleChangeAmount} /></div>
               </td>
-              <td width='43%'>
-                Gas<br /><div style={{ textAlign: 'center', marginTop: "10px" }}><input type='text' size='32' style=
-                {{
-                  backgroundColor: "rgba(255,255,255,0)",
-                  border: "1px solid white",
-                  color: "white",
-                  fontWeight: "bold",
-                  fontSize: "24px",
-                  width: "200px",
-                  textAlign: "right",
-                  paddingRight: "12px"
-                }} onChange={this.handleChangeGas} /></div>
-              </td>
-              <td><input type="button" className="button" style={{margin: "10px 0 0 15px", fontSize: "24px"}} value={this.props.send_button_value} onClick={this.handleSend} /></td>
+              <td width='15%'>
+		<input type="button" className="button" style={{margin: "40px 0 0 40px", fontSize: "22px"}} value={this.props.send_button_value} onClick={this.handleSend} />
+	      </td>
             </tr>
           </tbody>
         </table>

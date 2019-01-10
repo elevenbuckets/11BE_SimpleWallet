@@ -56,10 +56,8 @@ class Transfer extends Reflux.Component {
       <div className="item TransferLayout">
         <label className="item TransferTo">
           Recipient:
-          <input size={62} type='text' style=
+          <input size={52} type='text' style=
           {{
-            marginLeft: "40px",
-            marginRight: "40px",
             backgroundColor: "rgba(255,255,255,0)",
             border: "1px solid white",
             color: "white",
