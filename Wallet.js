@@ -18,6 +18,8 @@ class Wallet extends BladeIronClient {
 		this.toEth = (wei, decimals) => this.toBigNumber(String(wei)).div(this.toBigNumber(10 ** decimals));
 		this.hex2num = (hex) => this.toBigNumber(String(hex)).toString();		
 
+/* The following two functions are now provided and controlled by CP.
+
 		this.watchTokens = () => 
 		{
 			return this.client.call('hotGroups', this.TokenList);
@@ -29,8 +31,8 @@ class Wallet extends BladeIronClient {
 
 			return this.watchTokens();
 		}
-
-		this.syncTokenInfo = () => 
+*/
+		this.tokenWatcher = () => // dedicated 'synctokens' event handler for Wallet app
 		{
 			return this.client.call('hotGroupInfo').then((info) => {
 				this.TokenInfo = info;
