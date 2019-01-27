@@ -119,6 +119,11 @@ class WalletStates extends _reflux2.default.Store {
 		};
 
 		this.wallet.client.on('ethstats', this.wallet.handleStats);
+		this.wallet.client.subscribe("synctokens");
+		this.syncTokens = () => {
+			_WalletActions2.default.watchedTokenUpdate();
+		};
+		this.wallet.client.on('synctokens', this.syncTokens);
 
 		// this.wallet.watchTokens().then((rc) => {
 		// 	this.wallet.syncTokenInfo().then((info) => {
@@ -132,6 +137,7 @@ class WalletStates extends _reflux2.default.Store {
 		this._target;
 		this.retryTimer;
 		this.wallet.handleStats({}); // Init
+		this.syncTokens();
 	}
 
 	// Reflux Action responses
