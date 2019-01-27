@@ -72,9 +72,9 @@ class MainView extends _reflux2.default.Component {
 
 		this.store = _WalletStates2.default;
 		this.wallet = _electron.remote.getGlobal("wallet");
-		// this.wallet.client.subscribe("synctokens");
-		// this.wallet.client.on('synctokens', this.syncTokens);
-		this.wallet.tokenWatcher = this.syncTokens;
+		this.wallet.client.subscribe("synctokens");
+		this.wallet.client.on('synctokens', this.syncTokens);
+		// this.wallet.tokenWatcher = this.syncTokens;
 	}
 
 	render() {
