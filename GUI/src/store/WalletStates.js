@@ -35,11 +35,12 @@ class WalletStates extends Reflux.Store {
 		this.wallet = remote.getGlobal('wallet');
 
 		// Token info initialization, when updating watch tokens, do the same below
-		this.wallet.watchTokens().then(() => {
-			return this.wallet.syncTokenInfo();
-		}).then(() => {
-			this.setState({tokenList: this.wallet.TokenList})
-		})
+		// this.wallet.watchTokens().then(() => {
+		// 	return this.wallet.syncTokenInfo();
+		// }).then(() => {
+		// 	this.setState({tokenList: this.wallet.TokenList})
+		// })
+		this.setState({tokenList: Object.keys(this.wallet.TokenInfo)})
 
 		this.wallet.client.subscribe('ethstats');
 		this.setState({gasPrice: this.wallet.configs.defaultGasPrice});
@@ -99,11 +100,13 @@ class WalletStates extends Reflux.Store {
 
 		this.wallet.client.on('ethstats', this.wallet.handleStats);
 
-		this.wallet.watchTokens().then((rc) => {
-			this.wallet.syncTokenInfo().then((info) => {
-				this.setState({tokenList: this.wallet.TokenList});
-			})
-		})
+		// this.wallet.watchTokens().then((rc) => {
+		// 	this.wallet.syncTokenInfo().then((info) => {
+		// 		this.setState({tokenList: this.wallet.TokenList});
+		// 	})
+		// })
+
+		this.setState({tokenList: Object.keys(this.wallet.TokenInfo)})
 
 		this._count;
         	this._target;
@@ -194,6 +197,21 @@ class WalletStates extends Reflux.Store {
 		.then((qid) => { return this.wallet.getReceipts(qid); })
 		.then((r) => { console.dir(r); })
 		.catch((err) => { console.trace(err); });
+	}
+
+	onWatchedTokenUpdate(){
+		this.wallet.client.call('hotGroupInfo').then((info) => {
+			this.setState({tokenList: Object.keys(info)})
+			this.wallet.TokenInfo = info;
+			return true;
+		}).then(()=>{
+			this.addressUpdate();
+		})
+		.catch((err) => {
+			console.trace(err);
+			return false;
+		})
+		
 	}
 }
 
