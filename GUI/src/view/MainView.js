@@ -23,23 +23,13 @@ class MainView extends Reflux.Component {
 		super(props);
 		this.store = WalletStates;
 		this.wallet = remote.getGlobal("wallet");
-		// this.wallet.client.subscribe("synctokens");
-		// this.wallet.client.on('synctokens', this.syncTokens);
 		// this.wallet.tokenWatcher = this.syncTokens;
 	}
-
-	// componentDidMount = () => {
-	// 	this.syncTokens();
-	// }
 
 
 	updateState = (key, e) => {
 		this.setState({ [key]: e.target.value });
 	}
-
-	// syncTokens = () =>{
-	// 	WalletActions.watchedTokenUpdate();
-	// }
 
 	passAccRef = () => {
 		return ReactDOM.findDOMNode(this.refs.Accounts).firstChild;
