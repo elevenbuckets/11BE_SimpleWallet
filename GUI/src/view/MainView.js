@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import Reflux from 'reflux';
 import path from 'path';
 import os from 'os';
-import { remote } from 'electron'
 
 // Reflux store
 import WalletStates from '../store/WalletStates';
@@ -22,8 +21,6 @@ class MainView extends Reflux.Component {
 	constructor(props) {
 		super(props);
 		this.store = WalletStates;
-		this.wallet = remote.getGlobal("wallet");
-		// this.wallet.tokenWatcher = this.syncTokens;
 	}
 
 
