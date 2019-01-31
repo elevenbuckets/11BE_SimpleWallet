@@ -205,7 +205,6 @@ class WalletStates extends Reflux.Store {
 			console.trace(err);
 			return false;
 		})
-
 	}
 }
 

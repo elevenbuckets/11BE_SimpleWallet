@@ -26,6 +26,8 @@ var _os = require('os');
 
 var _os2 = _interopRequireDefault(_os);
 
+var _electron = require('electron');
+
 var _WalletStates = require('../store/WalletStates');
 
 var _WalletStates2 = _interopRequireDefault(_WalletStates);
