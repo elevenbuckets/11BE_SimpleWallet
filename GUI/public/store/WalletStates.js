@@ -52,19 +52,11 @@ class WalletStates extends _reflux2.default.Store {
 
 		this.listenables = _WalletActions2.default;
 		this.wallet = _electron.remote.getGlobal('wallet');
-
-		// Token info initialization, when updating watch tokens, do the same below
-		this.wallet.watchTokens().then(() => {
-			return this.wallet.syncTokenInfo();
-		}).then(() => {
-			this.setState({ tokenList: this.wallet.TokenList });
-		});
-
 		this.wallet.client.subscribe('ethstats');
-		this.setState({ gasPrice: this.wallet.configs.defaultGasPrice });
+		this.setState({ gasPrice: this.wallet.configs.defaultGasPrice }); // does not really work, since CP control gas price
 
 		this.addressUpdate = () => {
-			if (this.state.lesDelay === true) return; // do nothing, since statusUpdate is doing it already
+			if (this.state.lesDelay === true || this.state.address === null) return; // do nothing, since statusUpdate is doing it already
 			console.log(`DEBUG: address Update is called`);
 			this._count = 0;
 			this._target = this.state.tokenList.length + 1;
@@ -118,17 +110,22 @@ class WalletStates extends _reflux2.default.Store {
 		};
 
 		this.wallet.client.on('ethstats', this.wallet.handleStats);
+		this.wallet.client.subscribe("synctokens");
 
-		this.wallet.watchTokens().then(rc => {
-			this.wallet.syncTokenInfo().then(info => {
-				this.setState({ tokenList: this.wallet.TokenList });
-			});
-		});
+		this.syncTokens = () => {
+			console.log(`syncTokenHandler is called`);
+			_WalletActions2.default.watchedTokenUpdate();
+		};
+
+		this.wallet.client.on('synctokens', this.syncTokens);
 
 		this._count;
 		this._target;
 		this.retryTimer;
-		this.wallet.handleStats({}); // Init
+
+		// Init
+		this.wallet.handleStats({});
+		this.syncTokens();
 	}
 
 	// Reflux Action responses
@@ -216,6 +213,19 @@ class WalletStates extends _reflux2.default.Store {
 			console.dir(r);
 		}).catch(err => {
 			console.trace(err);
+		});
+	}
+
+	onWatchedTokenUpdate() {
+		return this.wallet.client.call('hotGroupInfo').then(info => {
+			this.setState({ tokenList: Object.keys(info) });
+			this.wallet.TokenInfo = info;
+			return true;
+		}).then(() => {
+			this.addressUpdate();
+		}).catch(err => {
+			console.trace(err);
+			return false;
 		});
 	}
 }
