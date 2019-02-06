@@ -64,7 +64,8 @@ class Transfer extends Reflux.Component {
             fontWeight: "bold",
             fontSize: "24px",
             fontFamily: "monospace",
-	    textAlign: "center"
+	    textAlign: "center",
+	    marginLeft: "50px"
           }} onChange={this.handleChange} 
                 value={this.state.recipient} placeholder="Ethereum Address" />
         </label>

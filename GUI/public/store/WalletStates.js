@@ -118,6 +118,7 @@ class WalletStates extends _reflux2.default.Store {
 		};
 
 		this.wallet.client.on('synctokens', this.syncTokens);
+
 		this._count;
 		this._target;
 		this.retryTimer;

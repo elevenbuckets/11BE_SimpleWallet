@@ -81,7 +81,8 @@ class Transfer extends _reflux2.default.Component {
               fontWeight: "bold",
               fontSize: "24px",
               fontFamily: "monospace",
-              textAlign: "center"
+              textAlign: "center",
+              marginLeft: "50px"
             }, onChange: this.handleChange,
             value: this.state.recipient, placeholder: 'Ethereum Address' })
         ),

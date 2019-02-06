@@ -74,21 +74,21 @@ class TxObjects extends Reflux.Component {
 
     return (
       <form className="item TxObj">
-        <table>
+        <table style={{margin: "0px"}}>
           <tbody>
             <tr>
-              <td width='10%' style={{ whiteSpace: 'nowrap' }}>
+              <td width='20%' style={{ whiteSpace: 'nowrap' }}>
                 Types<br /><div style=
                 {{ 
                   textAlign: 'center', 
                   width: "3.5em", 
-                  margin: "10px 40px 0 15px", 
+                  margin: "10px 40px 0 75px", 
                   padding: "0px", 
                   border: "1px solid white",
                   cursor: "pointer"
                 }} onClick={this.handleClick}>{sendkind}</div>
               </td>
-              <td width='75%'>
+              <td width='70%'>
                 Amount<br /><div style={{ marginTop: "10px", marginLeft: "15px" }}><input type='text' size='32' style=
                 {{
                   backgroundColor: "rgba(255,255,255,0)",
@@ -98,11 +98,12 @@ class TxObjects extends Reflux.Component {
                   fontSize: "24px",
                   width: "300px",
                   textAlign: "right",
-                  paddingRight: "12px"
+                  paddingRight: "12px",
+		  marginLeft: "76px"
                 }} onChange={this.handleChangeAmount} /></div>
               </td>
-              <td width='15%'>
-		<input type="button" className="button" style={{margin: "40px 0 0 40px", fontSize: "22px"}} value={this.props.send_button_value} onClick={this.handleSend} />
+              <td width='10%'>
+		<input type="button" className="button" style={{margin: "40px 0 0 75px", fontSize: "22px"}} value={this.props.send_button_value} onClick={this.handleSend} />
 	      </td>
             </tr>
           </tbody>

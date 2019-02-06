@@ -112,13 +112,14 @@ h6 {
   //max-height: 345px;
   //margin: 15vh 15vw 15vh 15vw;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 1fr;
   grid-template-areas: 
   "address"
   "action";
 }
 
 .TransferLayout {
+  margin-top: 10vh;
   display: grid;
   grid-area: action;
   /*overflow-y: scroll; */
@@ -136,6 +137,7 @@ h6 {
   height: 100%;
   font-size: 24px;
   grid-area: TransferTo;
+  justify-content: left;
 }
 
 .ToAvatar {

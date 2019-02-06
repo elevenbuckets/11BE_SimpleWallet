@@ -37,7 +37,7 @@ class TxObjects extends _reflux2.default.Component {
         { className: 'item TxObj' },
         _react2.default.createElement(
           'table',
-          null,
+          { style: { margin: "0px" } },
           _react2.default.createElement(
             'tbody',
             null,
@@ -46,7 +46,7 @@ class TxObjects extends _reflux2.default.Component {
               null,
               _react2.default.createElement(
                 'td',
-                { width: '10%', style: { whiteSpace: 'nowrap' } },
+                { width: '20%', style: { whiteSpace: 'nowrap' } },
                 'Types',
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
@@ -54,7 +54,7 @@ class TxObjects extends _reflux2.default.Component {
                   { style: {
                       textAlign: 'center',
                       width: "3.5em",
-                      margin: "10px 40px 0 15px",
+                      margin: "10px 40px 0 75px",
                       padding: "0px",
                       border: "1px solid white",
                       cursor: "pointer"
@@ -64,7 +64,7 @@ class TxObjects extends _reflux2.default.Component {
               ),
               _react2.default.createElement(
                 'td',
-                { width: '75%' },
+                { width: '70%' },
                 'Amount',
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
@@ -78,14 +78,15 @@ class TxObjects extends _reflux2.default.Component {
                       fontSize: "24px",
                       width: "300px",
                       textAlign: "right",
-                      paddingRight: "12px"
+                      paddingRight: "12px",
+                      marginLeft: "76px"
                     }, onChange: this.handleChangeAmount })
                 )
               ),
               _react2.default.createElement(
                 'td',
-                { width: '15%' },
-                _react2.default.createElement('input', { type: 'button', className: 'button', style: { margin: "40px 0 0 40px", fontSize: "22px" }, value: this.props.send_button_value, onClick: this.handleSend })
+                { width: '10%' },
+                _react2.default.createElement('input', { type: 'button', className: 'button', style: { margin: "40px 0 0 75px", fontSize: "22px" }, value: this.props.send_button_value, onClick: this.handleSend })
               )
             )
           )
