@@ -75,7 +75,7 @@ class Wallet extends BladeIronClient {
 		
 		                const subprocess = spawn(path.join(topdir,'node_modules','.bin','electron'), ['.'], {
 		                  cwd: topdir,
-		                  env: {DISPLAY: process.env.DISPLAY, XAUTHORITY: process.env.XAUTHORITY, configDir, PATH: process.env.PATH },
+		                  env: {DISPLAY: process.env.DISPLAY, XAUTHORITY: process.env.XAUTHORITY, configDir, PATH: process.env.PATH, rpchost: this.rpchost },
 		                  detached: true,
 		                  stdio: 'ignore'
 		                });
